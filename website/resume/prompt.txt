@@ -1,0 +1,73 @@
+## 项目概述
+创建一个个人作品集单页网站，采用柔和圆润风格，薄荷绿主色调。
+
+## 技术栈
+- React 18 + TypeScript
+- Vite 6
+- Tailwind CSS v4（使用 `tailwindcss/vite` 插件，无 `tailwind.config.js`）
+- shadcn/ui（手动实现 button/card/input/textarea/badge 组件）
+- Framer Motion（动画）
+- Lucide React（图标）
+
+## 设计规范
+- **风格**：柔和、圆润
+- **主色**：薄荷绿 `#6EE7B7`
+- **主色深**：翡翠绿 `#10B981`（用于文字/图标）
+- **强调色**：天空蓝 `#7DD3FC`
+- **辅助色**：奶油黄 `#FDE68A`
+- **背景**：奶白 `#FAFAF9`
+- **卡片**：纯白 `#FFFFFF`
+- **正文文字**：石板灰 `#475569`
+- **字体**：Quicksand（Google Fonts，400/500/600/700）
+- **圆角**：大圆角（rounded-3xl / rounded-full / rounded-2xl）
+- **阴影**：柔和弥散阴影 + 薄荷绿光晕
+- **滚动条**：薄荷绿半透明圆角
+
+## 页面结构（单页滚动）
+1. **Navbar** — 固定顶部，滚动时变毛玻璃圆角胶囊
+2. **Hero** — 全屏，浮动光斑背景，头像弹性入场，名字高亮，CTA 按钮，向下箭头
+3. **About** — 居中介绍 + 技能标签徽章
+4. **Projects** — 3 列卡片网格，hover 上浮缩放 + 阴影发光
+5. **Skills** — 进度条动画，薄荷绿到天空蓝渐变
+6. **Contact** — 表单 + 社交图标
+7. **Footer** — 版权信息
+
+## 动画要求
+- Framer Motion 淡入上移（`whileInView`，`once: true`）
+- 头像 spring 弹性入场
+- 光斑 `float` 上下浮动
+- 卡片 hover `y: -8, scale: 1.02`
+- 按钮 hover `scale: 1.05`
+- 技能条滚动到视口时宽度从 0 到目标值
+- 向下箭头循环上下摆动
+
+## 个人信息
+- 姓名：王小明
+- 职位：Agent 开发工程师
+- 简介：让 AI 更懂人，让体验更温柔（占位）
+- 技能：Agent 编排、RAG 检索增强、Prompt 工程、TypeScript/React、Python/FastAPI
+- 项目：智能客服 Agent、数据分析助手、写作协作 Agent
+
+## 响应式
+- 移动端优先
+- `md:` 断点切换网格布局
+- 移动端隐藏部分导航（保持简洁）
+- 文字大小响应式（`text-4xl md:text-6xl` 等）
+
+## 工程配置
+- 路径别名 `/*` → `./src/*`（vite.config.ts + tsconfig）
+- Node.js 26.5.1 环境
+- Tailwind v4 主题配置写在 `src/index.css` 的 `@theme` 块中
+
+## 文件结构
+```
+src/
+├── main.tsx
+├── App.tsx
+├── index.css
+├── lib/utils.ts
+├── components/
+│ ├── FadeIn.tsx
+│ ├── Navbar.tsx
+│ └── ui/（button, card, input, textarea, badge）
+└── sections/（Hero, About, Projects, Skills, Contact, Footer）
